@@ -1,10 +1,12 @@
 {
   "name": "martyewings-add_hosts_entry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Marty Ewings",
-  "summary": "",
+  "summary": "Provides a task to add hosts file entries to remote hosts",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/MartyEwings/add_hosts_entry",
+  "project_page": "https://github.com/MartyEwings/add_hosts_entry",
+  "issues_url": "https://github.com/MartyEwings/add_hosts_entry/issues",
   "dependencies": [
 
   ],
