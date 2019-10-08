@@ -1,0 +1,19 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Adds a hosts entry to a node, useful for when adding an agent in environment With NoDNS",
+  "parameters": {
+    "m_ip": {
+      "description": "IP Address ot add to host file",
+      "type": "String"
+  },
+  "m_host": {
+    "description": "hostname to add to host file",
+    "type": "String"
+}
+  },
+"implementations": [
+  {"name": "hosts_update_linux.sh", "requirements": ["shell"]},
+  {"name": "hosts_update_powershell.ps1", "requirements": ["powershell"]}
+]
+}
