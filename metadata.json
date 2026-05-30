@@ -1,8 +1,8 @@
 {
   "name": "martyewings-add_hosts_entry",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "author": "Marty Ewings",
-  "summary": "Provides a task to add hosts file entries to remote hosts",
+  "summary": "Provides a Bolt task to add hosts file entries to remote nodes",
   "license": "Apache-2.0",
   "source": "https://github.com/MartyEwings/add_hosts_entry",
   "project_page": "https://github.com/MartyEwings/add_hosts_entry",
@@ -12,58 +12,53 @@
   ],
   "operatingsystem_support": [
     {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7"
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "RedHat",
-      "operatingsystemrelease": [
-        "8"
-      ]
-    },
-    {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "7"
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9"
+        "11",
+        "12"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "18.04"
-      ]
-    },
-    {
-      "operatingsystem": "windows",
-      "operatingsystemrelease": [
-        "2019",
-        "10"
-      ]
-    },
-    {
-      "operatingsystem": "Fedora",
-      "operatingsystemrelease": [
-        "29"
-      ]
-    },
-    {
-      "operatingsystem": "Darwin",
-      "operatingsystemrelease": [
-        "16"
+        "20.04",
+        "22.04",
+        "24.04"
       ]
     },
     {
@@ -73,8 +68,31 @@
       ]
     },
     {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "40"
+      ]
+    },
+    {
+      "operatingsystem": "Darwin",
+      "operatingsystemrelease": [
+        "21",
+        "22",
+        "23"
+      ]
+    },
+    {
       "operatingsystem": "Solaris",
       "operatingsystemrelease": [
+        "11"
+      ]
+    },
+    {
+      "operatingsystem": "windows",
+      "operatingsystemrelease": [
+        "2019",
+        "2022",
+        "10",
         "11"
       ]
     }
@@ -82,10 +100,18 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0 < 7.0.0"
+      "version_requirement": ">= 7.0.0 < 9.0.0"
     }
   ],
-  "pdk-version": "1.12.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates#1.12.0",
-  "template-ref": "1.12.0-0-g55d9ae2"
+  "tags": [
+    "bolt",
+    "task",
+    "hosts",
+    "dns",
+    "bootstrap",
+    "pe"
+  ],
+  "pdk-version": "3.4.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#main",
+  "template-ref": "heads/main-0-ga181866"
 }

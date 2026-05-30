@@ -1,19 +1,23 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "Adds a hosts entry to a node, useful for when adding an agent in environment With NoDNS",
+  "description": "Adds an entry to a node's hosts file. Useful when adding an agent in an environment with no (or incomplete) DNS, so the node can resolve the primary server before bootstrap.",
   "parameters": {
     "m_ip": {
-      "description": "IP Address ot add to host file",
-      "type": "String"
+      "description": "IP address to add to the hosts file",
+      "type": "Pattern[/\\A(\\d{1,3}\\.){3}\\d{1,3}\\z/, /\\A[0-9a-fA-F:]+\\z/]"
+    },
+    "m_host": {
+      "description": "Hostname (FQDN) to associate with the IP address",
+      "type": "Pattern[/\\A[A-Za-z0-9._-]+\\z/]"
+    },
+    "hosts_file": {
+      "description": "Path to the hosts file to update. Defaults to /etc/hosts on *nix and %windir%\\System32\\drivers\\etc\\hosts on Windows.",
+      "type": "Optional[String[1]]"
+    }
   },
-  "m_host": {
-    "description": "hostname to add to host file",
-    "type": "String"
-}
-  },
-"implementations": [
-  {"name": "hosts_update_linux.sh", "requirements": ["shell"]},
-  {"name": "hosts_update_powershell.ps1", "requirements": ["powershell"]}
-]
+  "implementations": [
+    { "name": "hosts_update_linux.sh", "requirements": ["shell"] },
+    { "name": "hosts_update_powershell.ps1", "requirements": ["powershell"] }
+  ]
 }

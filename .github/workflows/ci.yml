@@ -1,0 +1,68 @@
+---
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  lint-and-unit:
+    name: Lint and unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Validate metadata and Puppet syntax
+        run: bundle exec rake validate
+
+      - name: Puppet lint
+        run: bundle exec rake lint
+
+      - name: RuboCop
+        run: bundle exec rake rubocop
+
+      - name: Unit tests
+        run: bundle exec rake spec
+
+  shellcheck:
+    name: ShellCheck (task scripts)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: ./tasks
+          additional_files: hosts_update_linux.sh
+
+  powershell-lint:
+    name: PSScriptAnalyzer (task scripts)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
+          $results = Invoke-ScriptAnalyzer -Path ./tasks -Recurse -Severity Warning
+          $results | Format-Table -AutoSize
+          if ($results | Where-Object { $_.Severity -ge 'Warning' }) {
+            throw "PSScriptAnalyzer found issues"
+          }
